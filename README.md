@@ -2,7 +2,7 @@
 
 <h5 align="center">
 
-[![Home Page](https://img.shields.io/badge/Project-Website-blue.svg)](https://chenghaogu.github.io/IGen/) [![arXiv](https://img.shields.io/badge/Arxiv-251203.03000-b31b1b.svg?logo=arXiv)](https://arxiv.org/pdf/2512.01773) 
+[![Home Page](https://img.shields.io/badge/Project-Website-blue.svg)](https://chenghaogu.github.io/IGen/) [![arXiv](https://img.shields.io/badge/Arxiv-251203.03000-b31b1b.svg?logo=arXiv)](https://arxiv.org/pdf/2512.01773) [![youtube](https://img.shields.io/badge/Demo_Video-E33122?logo=Youtube)](https://youtu.be/bypWdI8JYks)
 </h5>
 <br>
 
