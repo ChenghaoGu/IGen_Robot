@@ -2,7 +2,7 @@
 
 <h5 align="center">
 
-[![Home Page][(https://img.shields.io/badge/Project-Website-blue.svg)](https://dynamic-verse.github.io/)](https://chenghaogu.github.io/IGen/) [![arXiv][(https://img.shields.io/badge/Arxiv-251203.03000-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2512.03000)](https://arxiv.org/pdf/2512.01773) 
+[![Home Page](https://dynamic-verse.github.io/)](https://chenghaogu.github.io/IGen/) [![arXiv](https://arxiv.org/abs/2512.03000)](https://arxiv.org/pdf/2512.01773) 
 </h5>
 
 <br>
