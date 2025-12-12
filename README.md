@@ -1,14 +1,12 @@
 # IGen: Scalable Data Generation for Robot Learning from Open-World Images
 
-<div align="center">
+<div>
 
-🚧 Code is Coming Soon 🚧
+[https://arxiv.org/abs/2512.01773](https://arxiv.org/pdf/2512.01773)
 
-https://arxiv.org/abs/2512.01773
+[https://igen-project.github.io](http://127.0.0.1:5500/IGen/index.html)
 
-https://igen-project.github.io
-
-LICENSE
+💻 Code is Coming Soon
 
 A framework for scalable robot data generation from open-world images
 
