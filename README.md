@@ -42,6 +42,7 @@ IGen is a scalable data generation system for robot learning from open-world ima
 - [Repository Structure](#repository-structure)
 - [Installation](#installation)
 - [Generate Data](#generate-data)
+- [Star History](#star-history)
 - [Citation](#citation)
 
 ## Abstract 🧠
@@ -106,6 +107,14 @@ Equivalent script form:
 ```bash
 python scripts/generate_dataset.py --config configs/recipes/flower_watering.yaml
 ```
+
+## Star History ⭐
+
+<div align="center">
+  <a href="https://www.star-history.com/#ChenghaoGu/IGen_Robot&Date">
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ChenghaoGu/IGen_Robot&type=Date" width="100%"/>
+  </a>
+</div>
 
 ## Citation 📖
 
