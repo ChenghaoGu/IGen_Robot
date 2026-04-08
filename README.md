@@ -1,17 +1,122 @@
-<h2 align="center"> <a href="https://arxiv.org/pdf/2512.01773">IGen: Scalable Data Generation for Robot Learning from Open-World Images
+<div align="center">
+  <h2>IGen: Scalable Data Generation for Robot Learning from Open-World Images</h2>
+  <h4>CVPR 2026</h4>
 
-<h5 align="center">
+  <p>
+    Chenghao Gu<sup>1*</sup>, Haolan Kang<sup>2*</sup>, Junchao Lin<sup>3*</sup>, Jinghe Wang<sup>1</sup>, Duo Wu<sup>1</sup>, Shuzhao Xie<sup>1</sup>,
+    Fanding Huang<sup>1</sup>, Junchen Ge<sup>1</sup>, Ziyang Gong<sup>4</sup>, Letian Li<sup>1</sup>, Hongying Zheng<sup>5</sup>, Changwei Lv<sup>5</sup>, Zhi Wang<sup>1</sup>
+    <br/>
+    <sup>1</sup>Tsinghua University &nbsp; <sup>2</sup>HKU &nbsp; <sup>3</sup>Beijing University of Chemical Technology &nbsp; <sup>4</sup>Shanghai Jiao Tong University &nbsp; <sup>5</sup>Shenzhen University of Information Technology
+    <br/>
+    <i>* equal contribution</i>
+  </p>
 
-[![Home Page](https://img.shields.io/badge/Project-Website-blue.svg)](https://chenghaogu.github.io/IGen/) [![arXiv](https://img.shields.io/badge/Arxiv-251203.03000-b31b1b.svg?logo=arXiv)](https://arxiv.org/pdf/2512.01773) [![youtube](https://img.shields.io/badge/Demo_Video-E33122?logo=Youtube)](https://youtu.be/bypWdI8JYks)
-</h5>
-<br>
+  <p>
+    <a href="https://chenghaogu.github.io/IGen/"><img alt="Project Website" src="https://img.shields.io/badge/Project-Website-blue.svg"></a>
+    <a href="https://arxiv.org/abs/2512.01773"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2512.01773-b31b1b.svg?logo=arXiv"></a>
+    <a href="https://arxiv.org/pdf/2512.01773"><img alt="Paper PDF" src="https://img.shields.io/badge/Paper-PDF-0B5FFF"></a>
+    <a href="https://youtu.be/bypWdI8JYks"><img alt="Video" src="https://img.shields.io/badge/Video-YouTube-E33122?logo=Youtube"></a>
+  </p>
 
-## Overview
+  <p><b>Scalable robot data generation</b> from <b>open-world images</b> — no human teleoperation. 🤖✨</p>
+</div>
 
-IGen is a scalable data generation system for robot learning from open-world images. Instead of relying on labor-intensive teleoperation, IGen takes diverse images from the real world and automatically synthesizes robot trajectories for various tasks. With these generated data, we can train robot policies that transfer to real robots and perform effective manipulation in the real world — without any human teleoperation data.
+<div align="center">
+  <img src="https://chenghaogu.github.io/IGen/img/IGen_Method.png" alt="IGen overview" width="100%"/>
+</div>
 
-## Key Features
-- 🌍 **Open-World Image Processing**: Convert diverse 2D images into actionable 3D scenes
-- 🤖 **Visuomotor Data Generation**: Generate realistic robot trajectories and observations
-- 🧠 **LLM-Powered Planning**: Transform scene-specific instructions into executable plans
-- 📊 **Scalable Data Synthesis**: Support for large-scale robotic policy training
+IGen is a scalable data generation system for robot learning from open-world images. Instead of relying on labor-intensive teleoperation, IGen takes diverse real-world images and automatically synthesizes robot trajectories for various manipulation tasks. Policies trained purely on IGen-generated data can transfer to real robots — without any human teleoperation data. 🌍➡️🤖
+
+### Highlights 🚀
+
+- **Open-world → robot demonstrations**: turn a single image + instruction into executable \(SE(3)\) end-effector trajectories.
+- **3D-first pipeline**: reconstruct scenes as point clouds, extract spatial keypoints, and plan with VLM reasoning.
+- **Temporally coherent rendering**: synthesize dynamic point-cloud sequences and render frame-by-frame observations.
+- **Scalable generation**: from one captured scene image, automatically generate many randomized task demonstrations.
+
+## Contents 📚
+
+- [Contents](#contents)
+- [Abstract](#abstract)
+- [Method](#method)
+- [Repository Structure](#repository-structure)
+- [Installation](#installation)
+- [Generate Data](#generate-data)
+- [Citation](#citation)
+
+## Abstract 🧠
+
+The rise of generalist robotic policies has created an exponential demand for large-scale training data. However, on-robot data collection is labor-intensive and often limited to specific environments. In contrast, open-world images capture a vast diversity of real-world scenes that naturally align with robotic manipulation tasks, offering a promising avenue for low-cost, large-scale robot data acquisition. Despite this potential, the lack of associated robot actions hinders the practical use of open-world images for robot learning. To bridge this gap, we propose IGen, a framework that scalably generates realistic visual observations and executable actions from open-world images. IGen first converts unstructured 2D pixels into structured 3D scene representations. It then leverages vision-language models to transform task instructions into high-level plans and generate low-level actions as \(SE(3)\) end-effector pose sequences. From these poses, it synthesizes dynamic scene evolution and renders temporally coherent visual observations. Experiments validate the high quality of visuomotor data generated by IGen, and show that policies trained solely on IGen-synthesized data achieve performance comparable to those trained on real-world data.
+
+## Method ⚙️
+
+<div align="center">
+  <img src="https://chenghaogu.github.io/IGen/img/IGen_Method.png" alt="IGen Method" width="100%"/>
+</div>
+
+Given an open-world image and a task description, IGen reconstructs the environment and objects as 3D point clouds via foundation vision models, extracts spatial keypoints, uses a vision-language model to map instructions to executable plans and low-level control commands, and synthesizes temporally coherent observations by simulating execution and rendering frame-by-frame.
+
+## Repository Structure 🗂️
+
+```text
+IGen_Robot/
+├── configs/recipes/            # Scene/task recipes (replaces many gen_*.py variants)
+├── docs/                       # Migration and optional integration docs
+├── scripts/
+│   ├── generate_dataset.py     # Unified generation entry
+│   └── extract_legacy_configs.py
+├── src/igen/
+│   ├── cli.py
+│   ├── pipeline/               # Unified pipeline entry
+│   ├── utils/                  # Migrated from RGEN gen_utils
+│   └── sim/                    # Minimal simulator subtree (Isaac Sim/cuRobo path)
+├── pyproject.toml
+└── requirements*.txt
+```
+
+## Installation 🛠️
+
+Core dependencies:
+
+```bash
+pip install -e .
+```
+
+Optional simulator dependencies:
+
+```bash
+pip install -r requirements-sim.txt
+```
+
+Notes 📝:
+
+- Isaac Sim / cuRobo are environment-managed and should follow NVIDIA installation docs.
+- GraspGen is optional and externalized. See `docs/graspgen.md`.
+
+## Generate Data 🎬
+
+Use the unified CLI with recipe config:
+
+```bash
+igen-generate --config configs/recipes/kitchen_aigc.yaml
+```
+
+Equivalent script form:
+
+```bash
+python scripts/generate_dataset.py --config configs/recipes/flower_watering.yaml
+```
+
+## Citation 📖
+
+```bibtex
+@misc{gu2025igenscalabledatageneration,
+  title={IGen: Scalable Data Generation for Robot Learning from Open-World Images},
+  author={Chenghao Gu and Haolan Kang and Junchao Lin and Jinghe Wang and Duo Wu and Shuzhao Xie and Fanding Huang and Junchen Ge and Ziyang Gong and Letian Li and Hongying Zheng and Changwei Lv and Zhi Wang},
+  year={2025},
+  eprint={2512.01773},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO},
+  url={https://arxiv.org/abs/2512.01773}
+}
+```
