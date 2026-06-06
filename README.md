@@ -51,10 +51,6 @@ The rise of generalist robotic policies has created an exponential demand for la
 
 ## Method ⚙️
 
-<div align="center">
-  <img src="https://chenghaogu.github.io/IGen/img/IGen_Method.png" alt="IGen Method" width="100%"/>
-</div>
-
 Given an open-world image and a task description, IGen reconstructs the environment and objects as 3D point clouds via foundation vision models, extracts spatial keypoints, uses a vision-language model to map instructions to executable plans and low-level control commands, and synthesizes temporally coherent observations by simulating execution and rendering frame-by-frame.
 
 ## Repository Structure 🗂️
