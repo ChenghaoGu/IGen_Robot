@@ -94,13 +94,13 @@ We provide three ready-to-run scene scripts. Each one drives a Franka arm in the
 
 ```bash
 # Flower-watering scene
-python gen_flower.py
+python scripts/gen_flower.py
 
 # Place a ring into the cup scene
-python gen_tea.py
+python scripts/gen_tea.py
 
 # Van room pick-and-place scene
-python gen_van_room.py
+python scripts/gen_van_room.py
 ```
 
 Each script reads its assets (`data/`, `saves/`, `configs/cam.yml`) relative to the working directory and writes the rendered videos to:
