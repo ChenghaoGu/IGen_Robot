@@ -1,0 +1,16 @@
+# Core Python deps for gen demos (Isaac Sim / cuRobo are installed separately).
+numpy>=1.23
+scipy>=1.10
+opencv-python>=4.8
+open3d>=0.17
+torch>=2.0
+tqdm>=4.65
+trimesh>=4.0
+h5py>=3.8
+imageio>=2.31
+imageio-ffmpeg>=0.4
+pyvista>=0.42
+termcolor>=2.3
+transforms3d>=0.4
+PyYAML>=6.0
+plyfile>=0.8

@@ -41,7 +41,7 @@ IGen is a scalable data generation system for robot learning from open-world ima
 - [Method](#method)
 - [Repository Structure](#repository-structure)
 - [Installation](#installation)
-- [Generate Data](#generate-data)
+- [Usage](#usage)
 - [Star History](#star-history)
 - [Citation](#citation)
 
@@ -77,36 +77,47 @@ IGen_Robot/
 
 ## Installation 🛠️
 
-Core dependencies:
+Install the core Python dependencies from `requirements.txt`:
 
 ```bash
-pip install -e .
+pip install -r requirements.txt
 ```
 
-Optional simulator dependencies:
+The simulator stack is environment-managed and installed separately:
+
+- **Isaac Sim**: follow the official NVIDIA installation guide — [Isaac Sim Installation Docs](https://docs.isaacsim.omniverse.nvidia.com/latest/installation/index.html).
+- **GraspGen**: optional grasp generation, installed from the upstream repository — [GraspGen on GitHub](https://github.com/NVlabs/GraspGen).
+
+## Usage 🚀
+
+We provide three ready-to-run scene scripts. Each one drives a Franka arm in the Isaac Sim / cuRobo simulator, synthesizes the dynamic point-cloud sequence, and renders a video. Run them from the repository root with the simulator environment active:
 
 ```bash
-pip install -r requirements-sim.txt
+# Flower-watering scene
+python gen_flower.py
+
+# Place a ring into the cup scene
+python gen_tea.py
+
+# Van room pick-and-place scene
+python gen_van_room.py
 ```
 
-Notes 📝:
+Each script reads its assets (`data/`, `saves/`, `configs/cam.yml`) relative to the working directory and writes the rendered videos to:
 
-- Isaac Sim / cuRobo are environment-managed and should follow NVIDIA installation docs.
-- GraspGen is optional and externalized. See `docs/graspgen.md`.
-
-## Generate Data 🎬
-
-Use the unified CLI with recipe config:
-
-```bash
-igen-generate --config configs/recipes/kitchen_aigc.yaml
+```text
+./results/<scene_name>/<scene_name>_<timestamp>/random/video_<i>.mp4
 ```
 
-Equivalent script form:
+To adapt a script to a new scene, edit the `args.*` values in the `__main__` block at the bottom of each file:
 
-```bash
-python scripts/generate_dataset.py --config configs/recipes/flower_watering.yaml
-```
+| Parameter | Meaning |
+| --- | --- |
+| `scene_name` | Scene/asset folder name. |
+| `intrinsic` | Camera intrinsics `[fx, fy]`. |
+| `robot_rot` | Robot base orientation in degrees `[x, y, z]`. |
+| `robot_uv` | Robot base pixel location `(W, H)`. |
+| `world_scale` | Scene scale factor. |
 
 ## Star History ⭐
 
