@@ -39,9 +39,6 @@ IGen is a scalable data generation system for robot learning from open-world ima
 - [Contents](#contents)
 - [Abstract](#abstract)
 - [Method](#method)
-- [Repository Structure](#repository-structure)
-- [Installation](#installation)
-- [Usage](#usage)
 - [Star History](#star-history)
 - [Citation](#citation)
 
@@ -52,68 +49,6 @@ The rise of generalist robotic policies has created an exponential demand for la
 ## Method ⚙️
 
 Given an open-world image and a task description, IGen reconstructs the environment and objects as 3D point clouds via foundation vision models, extracts spatial keypoints, uses a vision-language model to map instructions to executable plans and low-level control commands, and synthesizes temporally coherent observations by simulating execution and rendering frame-by-frame.
-
-## Repository Structure 🗂️
-
-```text
-IGen_Robot/
-├── configs/recipes/            # Scene/task recipes (replaces many gen_*.py variants)
-├── docs/                       # Migration and optional integration docs
-├── scripts/
-│   ├── generate_dataset.py     # Unified generation entry
-│   └── extract_legacy_configs.py
-├── src/igen/
-│   ├── cli.py
-│   ├── pipeline/               # Unified pipeline entry
-│   ├── utils/                  # Migrated from RGEN gen_utils
-│   └── sim/                    # Minimal simulator subtree (Isaac Sim/cuRobo path)
-├── pyproject.toml
-└── requirements*.txt
-```
-
-## Installation 🛠️
-
-Install the core Python dependencies from `requirements.txt`:
-
-```bash
-pip install -r requirements.txt
-```
-
-The simulator stack is environment-managed and installed separately:
-
-- **Isaac Sim**: follow the official NVIDIA installation guide — [Isaac Sim Installation Docs](https://docs.isaacsim.omniverse.nvidia.com/latest/installation/index.html).
-- **GraspGen**: optional grasp generation, installed from the upstream repository — [GraspGen on GitHub](https://github.com/NVlabs/GraspGen).
-
-## Usage 🚀
-
-We provide three ready-to-run scene scripts. Each one drives a Franka arm in the Isaac Sim / cuRobo simulator, synthesizes the dynamic point-cloud sequence, and renders a video. Run them from the repository root with the simulator environment active:
-
-```bash
-# Flower-watering scene
-python scripts/gen_flower.py
-
-# Place a ring into the cup scene
-python scripts/gen_tea.py
-
-# Van room pick-and-place scene
-python scripts/gen_van_room.py
-```
-
-Each script reads its assets (`data/`, `saves/`, `configs/cam.yml`) relative to the working directory and writes the rendered videos to:
-
-```text
-./results/<scene_name>/<scene_name>_<timestamp>/random/video_<i>.mp4
-```
-
-To adapt a script to a new scene, edit the `args.*` values in the `__main__` block at the bottom of each file:
-
-| Parameter | Meaning |
-| --- | --- |
-| `scene_name` | Scene/asset folder name. |
-| `intrinsic` | Camera intrinsics `[fx, fy]`. |
-| `robot_rot` | Robot base orientation in degrees `[x, y, z]`. |
-| `robot_uv` | Robot base pixel location `(W, H)`. |
-| `world_scale` | Scene scale factor. |
 
 ## Star History ⭐
 
