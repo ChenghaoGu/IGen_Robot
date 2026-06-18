@@ -39,6 +39,7 @@ IGen is a scalable data generation system for robot learning from open-world ima
 - [Contents](#contents)
 - [Abstract](#abstract)
 - [Method](#method)
+- [Code](#code)
 - [Star History](#star-history)
 - [Citation](#citation)
 
@@ -49,6 +50,10 @@ The rise of generalist robotic policies has created an exponential demand for la
 ## Method ⚙️
 
 Given an open-world image and a task description, IGen reconstructs the environment and objects as 3D point clouds via foundation vision models, extracts spatial keypoints, uses a vision-language model to map instructions to executable plans and low-level control commands, and synthesizes temporally coherent observations by simulating execution and rendering frame-by-frame.
+
+## Code 💻
+
+Code is coming soon. 🚧
 
 ## Star History ⭐
 
